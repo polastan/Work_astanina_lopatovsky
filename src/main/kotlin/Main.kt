@@ -65,42 +65,45 @@ result.append(input.last())
 }*/
 
 // Задача 4
-fun main() {
-    print("Введите выражение (Число1 Число2 Операция): .")
+/*fun main() {
+    print("Введите выражение (ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ): ")
     val input = readLine() ?: ""
     if (input.isEmpty()) {
-        println ("Вы ничего не ввели!")
+        println("Вы ничего не ввели!")
         return
     }
-    val parts = input.split("")
-    if (parts.size !=3) {
-        println("Ошибка: нужно ввести в формате Число1 Число2 Операция")
+    val parts = input.trim().split(Regex("\\s+"))
+
+    if (parts.size != 3) {
+        println("Ошибка: нужно ввести ровно 3 элемента через пробел (ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ)")
         return
     }
+
     val num1 = parts[0].toDoubleOrNull()
     val num2 = parts[1].toDoubleOrNull()
     val op = parts[2]
 
     if (num1 == null || num2 == null) {
-        println("Ошибка: числа должны быть вещественными или целыми")
+        println("Ошибка: первые два значения должны быть числами")
         return
     }
+
     val result = when (op) {
         "+" -> num1 + num2
         "-" -> num1 - num2
         "*" -> num1 * num2
-        "/" -> if (num2!=0.0) num1 / num2 else
-        {
-            println ("Ошибка: деление на ноль!")
+        "/" -> if (num2 != 0.0) num1 / num2 else {
+            println("Ошибка: деление на ноль!")
             return
         }
         else -> {
-            println("Ошибка: неизвестная операция $op")
+            println("Ошибка: неизвестная операция '$op'")
             return
         }
     }
-    println ("Результат: $result")
-}
 
-// Задача 5
+    val output = if (result % 1.0 == 0.0) result.toLong().toString() else result.toString()
+    println("Результат: $output")
+}*/
+
 
