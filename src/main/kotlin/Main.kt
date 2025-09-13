@@ -1,5 +1,6 @@
 // Задача 1
-/*fun main() {
+/*
+fun main() {
     print ("Введите строку: ")
     val input = readLine() ?: ""
 
@@ -25,29 +26,30 @@ result.append(input.last())
         if (count > 1) result.append(count)
 
         println("Peзультат: $result")
-}*/
+}
+*/
 
 // Задача 2
-/*fun main() {
-    print ("Введите строку: ")
+/*
+fun main() {
+    println("Введите строку:")
     val input = readLine() ?: ""
 
-    if (input.isEmpty()) {
-        println("Строка пуста!")
-        return
+    // Превращаем строку в список символов, сортируем и группируем
+    val counts = input.groupingBy { it }
+        .eachCount()
+        .toSortedMap()
+
+    // Выводим результат
+    for ((char, count) in counts) {
+        println("$char - $count")
     }
-    val counts = mutableMapOf<Char,Int>()
-    for (ch in input) {
-        counts[ch]=counts.getOrDefault(ch,0)+1
-    }
-    val sortedKeys = counts.keys.sorted()
-    for (key in sortedKeys) {
-        println("$key - ${counts[key]}")
-    }
-}*/
+}
+ */
 
 // Задача 3
-/*fun main() {
+/*
+fun main() {
     print("Введите натуральное число: ")
     val input = readLine() ?: ""
 
@@ -62,7 +64,8 @@ result.append(input.last())
     }
     val binary = Integer.toBinaryString(number)
     println ("В двоичной системе: $binary")
-}*/
+}
+ */
 
 // Задача 4
 /*
@@ -138,6 +141,7 @@ fun main() {
 */
 
 // Задача 6
+/*
 fun main() {
     println("Введите первую цифру: ")
     val a = readLine()!!.toInt()
@@ -160,6 +164,6 @@ fun main() {
         println("Создать нечетное число невозможно")
     }
 }
-
+*/
 
 
