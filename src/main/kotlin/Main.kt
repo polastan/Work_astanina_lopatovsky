@@ -65,7 +65,8 @@ result.append(input.last())
 }*/
 
 // Задача 4
-/*fun main() {
+/*
+ fun main() {
     print("Введите выражение (ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ): ")
     val input = readLine() ?: ""
     if (input.isEmpty()) {
@@ -104,6 +105,61 @@ result.append(input.last())
 
     val output = if (result % 1.0 == 0.0) result.toLong().toString() else result.toString()
     println("Результат: $output")
-}*/
+}
+*/
+
+// Задача 5
+/*
+fun main() {
+    print("Введите число n: ")
+    val n = readLine()!!.toInt()
+
+    print("Введите основание степени x: ")
+    val x = readLine()!!.toInt()
+
+    var y = 0
+    var value = 1
+    var found = false
+
+    while (value <= n) {
+        if (value == n) {
+            print("Целочисленный показатель существует: y = $y")
+            found = true
+            break
+        }
+        y = y + 1
+        value = value * x
+    }
+
+    if (!found) {
+        println("Целочисленный показатель не существует")
+    }
+}
+*/
+
+// Задача 6
+fun main() {
+    println("Введите первую цифру: ")
+    val a = readLine()!!.toInt()
+
+    println("Введите вторую цифру: ")
+    val b = readLine()!!.toInt()
+
+    if (a == b) {
+        println("Цифры должны быть различными")
+        return
+    }
+
+    if (a % 2 == 1) {
+        val number = b * 10 + a
+        println("Можно составить число: $number")
+    } else if (b % 2 == 1) {
+        val number = a * 10 + b
+        println("Можно составить число: $number")
+    } else {
+        println("Создать нечетное число невозможно")
+    }
+}
+
 
 
