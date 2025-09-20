@@ -1,20 +1,12 @@
 fun main() {
-    // меню выбора
-    println("Выберите задачу от 1 до 6:")
-    println("1 - Сжать строку (aaaabb -> a4b2)")
-    println("2 - Подсчитать количество символов")
-    println("3 - Перевести число в двоичную систему")
-    println("4 - Калькулятор")
-    println("5 - Проверить, является ли число степенью")
-    println("6 - Составить нечетное число из двух цифр")
-
-    val choice = readLine()!!.toInt() // читаем выбор пользователя
+    print("Выберите задачу (1-6): ")
+    val choice = readLine()?.toIntOrNull() ?: 0
 
     if (choice == 1) {
 
         // ЗАДАЧА 1
         println("Введите строку:")
-        val input = readLine()!!
+        val input = readLine() ?: ""
 
         if (input == "") {
             println("Строка пустая!")
@@ -41,11 +33,12 @@ fun main() {
 
             println("Результат: $result")
         }
+
     } else if (choice == 2) {
 
         // ЗАДАЧА 2
         println("Введите строку:")
-        val input = readLine()!!
+        val input = readLine() ?: ""
 
         for (c in input.toSet()) {
             var count = 0
@@ -56,11 +49,12 @@ fun main() {
             }
             println("$c - $count")
         }
+
     } else if (choice == 3) {
 
         // ЗАДАЧА 3
         println("Введите число:")
-        val n = readLine()!!.toInt()
+        val n = readLine()?.toIntOrNull() ?: 0
 
         var number = n
         var result = ""
@@ -76,17 +70,18 @@ fun main() {
         }
 
         println("В двоичной системе: $result")
+
     } else if (choice == 4) {
 
         // ЗАДАЧА 4
         println("Введите число 1:")
-        val a = readLine()!!.toDouble()
+        val a = readLine()?.toDoubleOrNull() ?: 0.0
 
         println("Введите число 2:")
-        val b = readLine()!!.toDouble()
+        val b = readLine()?.toDoubleOrNull() ?: 0.0
 
         println("Введите операцию (+, -, *, /):")
-        val op = readLine()!!
+        val op = readLine() ?: ""
 
         var result = 0.0
 
@@ -109,20 +104,21 @@ fun main() {
         }
 
         println("Результат: $result")
+
     } else if (choice == 5) {
 
         // ЗАДАЧА 5
         println("Введите число n:")
-        val n = readLine()!!.toInt()
+        val n = readLine()?.toIntOrNull() ?: 0
 
         println("Введите основание x:")
-        val x = readLine()!!.toInt()
+        val x = readLine()?.toIntOrNull() ?: 0
 
         var value = 1
         var y = 0
         var found = false
 
-        while (value <= n) {
+        while (value <= n && x > 1) {
             if (value == n) {
                 println("Да, n = x^$y")
                 found = true
@@ -133,27 +129,27 @@ fun main() {
         }
 
         if (!found) {
-            println("Нет целого показателя степени")
+            println("Целочисленный показатель не существует")
         }
+
     } else if (choice == 6) {
 
         // ЗАДАЧА 6
         println("Введите первую цифру:")
-        val a = readLine()!!.toInt()
+        val a = readLine()?.toIntOrNull() ?: 0
 
         println("Введите вторую цифру:")
-        val b = readLine()!!.toInt()
+        val b = readLine()?.toIntOrNull() ?: 0
 
         if (a % 2 == 1 && b % 2 == 0) {
-            println("Можно составить число: " + b * 10 + a)
+            println("Можно составить число: " + (b * 10 + a))
         } else if (b % 2 == 1 && a % 2 == 0) {
-            println("Можно составить число: " + a * 10 + b)
+            println("Можно составить число: " + (a * 10 + b))
         } else {
             println("Создать нечетное число нельзя")
         }
+
     } else {
         println("Нет такой задачи!")
     }
 }
-
-
