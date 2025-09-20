@@ -1,169 +1,159 @@
-// Задача 1
-/*
 fun main() {
-    print ("Введите строку: ")
-    val input = readLine() ?: ""
+    // меню выбора
+    println("Выберите задачу от 1 до 6:")
+    println("1 - Сжать строку (aaaabb -> a4b2)")
+    println("2 - Подсчитать количество символов")
+    println("3 - Перевести число в двоичную систему")
+    println("4 - Калькулятор")
+    println("5 - Проверить, является ли число степенью")
+    println("6 - Составить нечетное число из двух цифр")
 
-    if (input.isEmpty()) {
-        println("Строка пуста!")
-        return
-    }
+    val choice = readLine()!!.toInt() // читаем выбор пользователя
 
-    val result = StringBuilder()
-    var count = 1
+    if (choice == 1) {
 
-    for (i in 1 until input.length) {
-        if (input [i] == input [i-1]) {
-            count++
-    } else {
-        result.append(input[i-1])
-        if (count > 1) result.append(count)
-        count = 1
-    }
+        // ЗАДАЧА 1
+        println("Введите строку:")
+        val input = readLine()!!
 
-}
-result.append(input.last())
-        if (count > 1) result.append(count)
+        if (input == "") {
+            println("Строка пустая!")
+        } else {
+            var result = ""
+            var count = 1
 
-        println("Peзультат: $result")
-}
-*/
+            for (i in 1 until input.length) {
+                if (input[i] == input[i - 1]) {
+                    count = count + 1
+                } else {
+                    result = result + input[i - 1]
+                    if (count > 1) {
+                        result = result + count
+                    }
+                    count = 1
+                }
+            }
 
-// Задача 2
-/*
-fun main() {
-    println("Введите строку:")
-    val input = readLine() ?: ""
+            result = result + input[input.length - 1]
+            if (count > 1) {
+                result = result + count
+            }
 
-    // Превращаем строку в список символов, сортируем и группируем
-    val counts = input.groupingBy { it }
-        .eachCount()
-        .toSortedMap()
+            println("Результат: $result")
+        }
+    } else if (choice == 2) {
 
-    // Выводим результат
-    for ((char, count) in counts) {
-        println("$char - $count")
-    }
-}
- */
+        // ЗАДАЧА 2
+        println("Введите строку:")
+        val input = readLine()!!
 
-// Задача 3
-/*
-fun main() {
-    print("Введите натуральное число: ")
-    val input = readLine() ?: ""
+        for (c in input.toSet()) {
+            var count = 0
+            for (i in input) {
+                if (i == c) {
+                    count = count + 1
+                }
+            }
+            println("$c - $count")
+        }
+    } else if (choice == 3) {
 
-    if (input.isEmpty()) {
-        println("Вы ничего не ввели!")
-        return
-    }
-    val number = input.toIntOrNull()
-    if (number == null || number < 0) {
-        println("Введите корректное натуральное число!")
-        return
-    }
-    val binary = Integer.toBinaryString(number)
-    println ("В двоичной системе: $binary")
-}
- */
+        // ЗАДАЧА 3
+        println("Введите число:")
+        val n = readLine()!!.toInt()
 
-// Задача 4
-/*
- fun main() {
-    print("Введите выражение (ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ): ")
-    val input = readLine() ?: ""
-    if (input.isEmpty()) {
-        println("Вы ничего не ввели!")
-        return
-    }
-    val parts = input.trim().split(Regex("\\s+"))
+        var number = n
+        var result = ""
 
-    if (parts.size != 3) {
-        println("Ошибка: нужно ввести ровно 3 элемента через пробел (ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ)")
-        return
-    }
+        if (number == 0) {
+            result = "0"
+        }
 
-    val num1 = parts[0].toDoubleOrNull()
-    val num2 = parts[1].toDoubleOrNull()
-    val op = parts[2]
+        while (number > 0) {
+            val bit = number % 2
+            result = bit.toString() + result
+            number = number / 2
+        }
 
-    if (num1 == null || num2 == null) {
-        println("Ошибка: первые два значения должны быть числами")
-        return
-    }
+        println("В двоичной системе: $result")
+    } else if (choice == 4) {
 
-    val result = when (op) {
-        "+" -> num1 + num2
-        "-" -> num1 - num2
-        "*" -> num1 * num2
-        "/" -> if (num2 != 0.0) num1 / num2 else {
-            println("Ошибка: деление на ноль!")
+        // ЗАДАЧА 4
+        println("Введите число 1:")
+        val a = readLine()!!.toDouble()
+
+        println("Введите число 2:")
+        val b = readLine()!!.toDouble()
+
+        println("Введите операцию (+, -, *, /):")
+        val op = readLine()!!
+
+        var result = 0.0
+
+        if (op == "+") {
+            result = a + b
+        } else if (op == "-") {
+            result = a - b
+        } else if (op == "*") {
+            result = a * b
+        } else if (op == "/") {
+            if (b != 0.0) {
+                result = a / b
+            } else {
+                println("Ошибка: деление на ноль")
+                return
+            }
+        } else {
+            println("Неизвестная операция")
             return
         }
-        else -> {
-            println("Ошибка: неизвестная операция '$op'")
-            return
+
+        println("Результат: $result")
+    } else if (choice == 5) {
+
+        // ЗАДАЧА 5
+        println("Введите число n:")
+        val n = readLine()!!.toInt()
+
+        println("Введите основание x:")
+        val x = readLine()!!.toInt()
+
+        var value = 1
+        var y = 0
+        var found = false
+
+        while (value <= n) {
+            if (value == n) {
+                println("Да, n = x^$y")
+                found = true
+                break
+            }
+            y = y + 1
+            value = value * x
         }
-    }
 
-    val output = if (result % 1.0 == 0.0) result.toLong().toString() else result.toString()
-    println("Результат: $output")
-}
-*/
-
-// Задача 5
-/*
-fun main() {
-    print("Введите число n: ")
-    val n = readLine()!!.toInt()
-
-    print("Введите основание степени x: ")
-    val x = readLine()!!.toInt()
-
-    var y = 0
-    var value = 1
-    var found = false
-
-    while (value <= n) {
-        if (value == n) {
-            print("Целочисленный показатель существует: y = $y")
-            found = true
-            break
+        if (!found) {
+            println("Нет целого показателя степени")
         }
-        y = y + 1
-        value = value * x
-    }
+    } else if (choice == 6) {
 
-    if (!found) {
-        println("Целочисленный показатель не существует")
-    }
-}
-*/
+        // ЗАДАЧА 6
+        println("Введите первую цифру:")
+        val a = readLine()!!.toInt()
 
-// Задача 6
-/*
-fun main() {
-    println("Введите первую цифру: ")
-    val a = readLine()!!.toInt()
+        println("Введите вторую цифру:")
+        val b = readLine()!!.toInt()
 
-    println("Введите вторую цифру: ")
-    val b = readLine()!!.toInt()
-
-    if (a == b) {
-        println("Цифры должны быть различными")
-        return
-    }
-
-    if (a % 2 == 1) {
-        val number = b * 10 + a
-        println("Можно составить число: $number")
-    } else if (b % 2 == 1) {
-        val number = a * 10 + b
-        println("Можно составить число: $number")
+        if (a % 2 == 1 && b % 2 == 0) {
+            println("Можно составить число: " + b * 10 + a)
+        } else if (b % 2 == 1 && a % 2 == 0) {
+            println("Можно составить число: " + a * 10 + b)
+        } else {
+            println("Создать нечетное число нельзя")
+        }
     } else {
-        println("Создать нечетное число невозможно")
+        println("Нет такой задачи!")
     }
 }
-*/
 
 
